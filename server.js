@@ -4,8 +4,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.json({
-    IP: req.ip,
-    Host: req.headers["host"],
+    ip: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
     userAgent: req.headers["user-agent"],
     language: req.headers["accept-language"]
   });
